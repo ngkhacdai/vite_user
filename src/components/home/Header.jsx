@@ -1,7 +1,7 @@
 import logo from "../../assets/trustybuy.png";
 import { Col, Dropdown, Input, Row, Space } from "antd";
 const { Search } = Input;
-import { DownOutlined } from "@ant-design/icons";
+import { DownOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 const items = [
   {
     label: (
@@ -38,7 +38,7 @@ const items = [
 ];
 const Header = () => {
   return (
-    <div className="w-11/12 m-auto">
+    <div className=" w-3/4 m-auto">
       <Row
         justify="space-between"
         gutter={[0, 0]}
@@ -51,7 +51,7 @@ const Header = () => {
             <img src={logo} style={{ width: 100, height: 100 }} />
           </a>
         </Col>
-        <Col xs={11} sm={13} md={15} lg={16} xl={16}>
+        <Col xs={11} sm={13} md={15} lg={14} xl={14}>
           <Search
             placeholder="input search text"
             //   onSearch={onSearch}
@@ -61,6 +61,11 @@ const Header = () => {
               }
             }
           />
+        </Col>
+        <Col span={2}>
+          <a href="/cart">
+            <ShoppingCartOutlined className="size-10 cursor-pointer	" />
+          </a>
         </Col>
         <Col span={3}>
           <Dropdown
