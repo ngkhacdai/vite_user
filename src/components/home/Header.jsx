@@ -38,19 +38,20 @@ const items = [
 ];
 const Header = () => {
   return (
-    <div>
+    <div className="w-11/12 m-auto">
       <Row
-        gutter={[10, 0]}
+        justify="space-between"
+        gutter={[0, 0]}
         style={{
           alignItems: "center",
         }}
       >
-        <Col span={2}>
+        <Col span={3}>
           <a href="/">
             <img src={logo} style={{ width: 100, height: 100 }} />
           </a>
         </Col>
-        <Col xs={11} sm={13} md={15} lg={17} xl={19}>
+        <Col xs={11} sm={13} md={15} lg={16} xl={16}>
           <Search
             placeholder="input search text"
             //   onSearch={onSearch}
@@ -61,7 +62,7 @@ const Header = () => {
             }
           />
         </Col>
-        <Col span={2}>
+        <Col span={3}>
           <Dropdown
             menu={{
               items,

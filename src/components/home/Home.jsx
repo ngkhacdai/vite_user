@@ -4,7 +4,9 @@ import { Outlet } from "react-router-dom";
 const Home = () => {
   return (
     <div>
-      <Header />
+      <div className="bg-green-200 w-full ">
+        <Header />
+      </div>
       <Outlet />
     </div>
   );
