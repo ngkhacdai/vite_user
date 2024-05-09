@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAllProduct } from "../../service/productAPI";
-import { Card, Col, Row } from "antd";
+import { Card, Col, Row, Spin } from "antd";
 import Meta from "antd/es/card/Meta";
 import { API } from "../../service/customAxios";
 import { NavLink } from "react-router-dom";
@@ -11,8 +11,6 @@ const ListProduct = () => {
   const [product, setProduct] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [category, setCategory] = useState([]);
-  console.log(category);
-  console.log(product);
   useEffect(() => {
     const getData = async () => {
       setProduct(await getAllProduct());
@@ -22,7 +20,7 @@ const ListProduct = () => {
     getData();
   }, []);
   if (isLoading) {
-    return <div>...Loading</div>;
+    return <Spin fullscreen />;
   }
   return (
     <div className="w-3/4 m-auto mt-3">
@@ -47,7 +45,7 @@ const ListProduct = () => {
                 >
                   <Meta
                     title={item.product_name}
-                    description={`${item.product_price}đ`}
+                    description={`${item.product_price}`}
                   />
                 </Card>
               </NavLink>

@@ -2,41 +2,29 @@ import logo from "../../assets/trustybuy.png";
 import { Col, Dropdown, Input, Row, Space } from "antd";
 const { Search } = Input;
 import { DownOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { fetchUserInfo } from "../../redux/slice/userSlice";
+
 const items = [
   {
-    label: (
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.antgroup.com"
-      >
-        1st menu item
-      </a>
-    ),
+    label: <NavLink to="/user">Tài khoản của tôi</NavLink>,
     key: "0",
   },
   {
-    label: (
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.aliyun.com"
-      >
-        2nd menu item
-      </a>
-    ),
+    label: <NavLink>Logout</NavLink>,
     key: "1",
-  },
-  {
-    type: "divider",
-  },
-  {
-    label: "3rd menu item disabled",
-    key: "3",
-    disabled: true,
   },
 ];
 const Header = () => {
+  const dispatch = useDispatch();
+
+  const profile = useSelector((state) => state.user.profile);
+  useEffect(() => {
+    dispatch(fetchUserInfo());
+  }, []);
   return (
     <div className=" w-3/4 m-auto">
       <Row
@@ -73,8 +61,12 @@ const Header = () => {
               items,
             }}
           >
-            <Space>
-              Hover me
+            <Space className="cursor-pointer">
+              {profile.length === 0 ? (
+                <div></div>
+              ) : (
+                profile.information.fullName
+              )}
               <DownOutlined />
             </Space>
           </Dropdown>

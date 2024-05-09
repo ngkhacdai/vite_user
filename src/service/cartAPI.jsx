@@ -9,3 +9,8 @@ export const deleteProductInCart = async (form) => {
   const response = await axios.post("/cartv2/delete", form);
   return response.message;
 };
+
+export const updateUserCartQuantity = async (form) => {
+  const response = await axios.post("/cartv2/update", form);
+  return response.message;
+};

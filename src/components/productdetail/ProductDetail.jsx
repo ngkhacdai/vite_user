@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getProduct } from "../../service/productAPI";
-import { Col, Row } from "antd";
+import { Col, Row, Spin } from "antd";
 import { ToastContainer } from "react-toastify";
 import ImageProductDetail from "./ImageProductDetail";
 import ShopInfor from "./ShopInfor";
@@ -21,7 +21,7 @@ const ProductDetail = () => {
   }, []);
 
   if (isLoading) {
-    return <div>...Loading</div>;
+    return <Spin fullscreen />;
   }
   return (
     <div>
