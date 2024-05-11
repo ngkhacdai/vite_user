@@ -1,12 +1,11 @@
 import { Layout, Menu, theme } from "antd";
 const { Content, Sider } = Layout;
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { FileTextOutlined, UserOutlined } from "@ant-design/icons";
 import { NavLink, Outlet } from "react-router-dom";
 
 const SideBar = () => {
-  const profile = useSelector((state) => state.user.profile);
-  console.log(profile);
+  // const profile = useSelector((state) => state.user.profile);
   function getItem(label, key, icon, children) {
     return {
       key,
@@ -17,14 +16,17 @@ const SideBar = () => {
   }
   const items = [
     getItem("Thông tin cá nhân", "sub1", <UserOutlined />, [
-      getItem(<NavLink to={"/user"}>Hồ sơ</NavLink>, "1"),
-      getItem(<NavLink to={"/user/address"}>Địa chỉ</NavLink>, "2"),
-      getItem(<NavLink to={"/user/changepassword"}>Đổi mật khẩu</NavLink>, "3"),
+      getItem(<NavLink to={"/user"}>Hồ sơ</NavLink>, "/user"),
+      getItem(<NavLink to={"/user/address"}>Địa chỉ</NavLink>, "/user/address"),
+      getItem(
+        <NavLink to={"/user/changepassword"}>Đổi mật khẩu</NavLink>,
+        "/user/changepassword"
+      ),
     ]),
 
     getItem(
       <NavLink to={"/user/order"}>Đơn mua</NavLink>,
-      "4",
+      "/user/order",
       <FileTextOutlined />
     ),
   ];
@@ -38,7 +40,7 @@ const SideBar = () => {
           <div className="demo-logo-vertical" />
           <Menu
             theme="dark"
-            defaultSelectedKeys={["1"]}
+            defaultSelectedKeys={[window.location.pathname]}
             mode="inline"
             items={items}
           />

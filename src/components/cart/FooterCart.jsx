@@ -2,29 +2,32 @@ import { Button, Col, ConfigProvider, Row } from "antd";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
+import { NavLink } from "react-router-dom";
 
 const FooterCart = () => {
   const productSelected = useSelector((state) => state.cart.selectProduct);
   const [totalCart, setTotalCart] = useState(0);
-  console.log(productSelected);
+  const [showNavLink, setShowNavLink] = useState(false);
+
   useEffect(() => {
     let tong = 0;
-    productSelected.map((item) => {
+    productSelected.forEach((item) => {
       let price = item.price * item.quantity;
       tong += price;
     });
     setTotalCart(tong);
+
+    // Kiểm tra xem có đủ sản phẩm được chọn hay không để hiển thị NavLink
+    setShowNavLink(productSelected.length > 0);
   }, [productSelected]);
+
   const checkoutHandler = () => {
     if (productSelected.length === 0) {
       return toast.error("Hãy chọn sản phẩm");
     }
-    const form = {
-      cartId: localStorage.getItem("cart"),
-      userId: localStorage.getItem("userID"),
-      shop_order_ids: [],
-    };
+    window.location.href = "/checkout";
   };
+
   return (
     <div>
       <Row
@@ -49,13 +52,24 @@ const FooterCart = () => {
               },
             }}
           >
-            <Button
-              onClick={checkoutHandler}
-              className="w-48 h-11"
-              type="primary"
-            >
-              Mua hàng
-            </Button>
+            {/* Sử dụng biến trạng thái để kiểm soát việc hiển thị NavLink */}
+            {showNavLink && (
+              <NavLink to="/checkout">
+                <Button className="w-48 h-11" type="primary">
+                  Mua hàng
+                </Button>
+              </NavLink>
+            )}
+            {/* Hiển thị nút "Mua hàng" mà không sử dụng NavLink */}
+            {!showNavLink && (
+              <Button
+                onClick={checkoutHandler}
+                className="w-48 h-11"
+                type="primary"
+              >
+                Mua hàng
+              </Button>
+            )}
           </ConfigProvider>
         </Col>
       </Row>

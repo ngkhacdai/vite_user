@@ -9,6 +9,7 @@ import Profile from "./components/user/Profile";
 import Address from "./components/user/Address";
 import ChangePassword from "./components/user/ChangePassword";
 import Order from "./components/user/Order";
+import CheckOut from "./components/checkout/CheckOut";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<ListProduct />} />
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<CheckOut />} />
           <Route path="/user" element={<Account />}>
             <Route path="/user" element={<Profile />} />
             <Route path="/user/address" element={<Address />} />
