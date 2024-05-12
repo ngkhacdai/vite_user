@@ -8,13 +8,12 @@ const Address = () => {
   const [isLoading, setIsloading] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [addressID, setAddressID] = useState("");
+  const [checkProfile, setCheckProfile] = useState(true);
   const showModal = (id) => {
     setAddressID(id);
     setIsModalOpen(true);
   };
   const handleOk = async () => {
-    console.log(addressID);
-    console.log(localStorage.getItem("token"));
     await deleteAddress(addressID);
     await getData();
     setIsModalOpen(false);
@@ -24,8 +23,14 @@ const Address = () => {
   };
 
   const getData = async () => {
-    setAddress(await getAddress());
-    setIsloading(false);
+    try {
+      setAddress(await getAddress());
+      setIsloading(false);
+      setCheckProfile(true);
+    } catch (error) {
+      setIsloading(false);
+      setCheckProfile(false);
+    }
   };
 
   useEffect(() => {
@@ -33,6 +38,9 @@ const Address = () => {
   }, []);
   if (isLoading) {
     return <Spin fullscreen />;
+  }
+  if (!checkProfile) {
+    return <div>Hãy cập nhật thông tin cá nhân trước</div>;
   }
   return (
     <div>

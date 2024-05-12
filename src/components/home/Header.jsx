@@ -65,7 +65,7 @@ const Header = () => {
               {profile.length === 0 ? (
                 <div></div>
               ) : (
-                profile.information.fullName
+                profile?.information?.fullName
               )}
               <DownOutlined />
             </Space>

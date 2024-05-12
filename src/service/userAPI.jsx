@@ -19,3 +19,8 @@ export const deleteAddress = async (form) => {
   console.log(response);
   return response;
 };
+
+export const updateProfile = async (form) => {
+  const response = await axios.put("/user/updateUser", form);
+  return response;
+};

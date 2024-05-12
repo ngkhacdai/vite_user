@@ -17,6 +17,9 @@ import Cancelled from "./components/user/order/Cancelled";
 import Delivered from "./components/user/order/Delivered";
 import Shop from "./components/shop/Shop";
 import { useEffect, useState } from "react";
+import Register from "./components/register/Register";
+import Logout from "./components/home/Logout";
+import Otp from "./components/register/Otp";
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
@@ -32,6 +35,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />}>
           <Route path="/" element={<ListProduct />} />
+          <Route path="/logout" element={<Logout />} />
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<CheckOut />} />
@@ -50,6 +54,7 @@ function App() {
           </Route>
         </Route>
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>
   );
