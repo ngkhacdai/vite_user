@@ -1,5 +1,5 @@
 import { Button, Form, Input } from "antd";
-import axios from "../../service/customAxios";
+import axios from "axios";
 
 const Login = () => {
   const onFinish = async (values) => {
@@ -8,11 +8,14 @@ const Login = () => {
       password: values.password,
       role: "User",
     };
-    await axios.post("/access/login", form).then((res) => {
-      localStorage.setItem("userID", res.message.userId);
-      localStorage.setItem("token", res.message.accessToken);
-      window.location.href = "/";
-    });
+    await axios
+      .post("https://dai.tongdaihoidap.com/v1/api/access/login", form)
+      .then((res) => {
+        console.log(res);
+        localStorage.setItem("userID", res.data.message.userId);
+        localStorage.setItem("token", res.data.message.accessToken);
+        window.location.href = "/";
+      });
 
     console.log("Success:", values);
   };

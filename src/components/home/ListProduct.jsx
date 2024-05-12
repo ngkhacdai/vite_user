@@ -28,26 +28,31 @@ const ListProduct = () => {
       <Row className="bg-white p-2" gutter={[0, 10]}>
         {product.map((item, index) => {
           return (
-            <Col span={5} className="m-2" key={`product-${index}`}>
-              <NavLink to={`/product/${item._id}`}>
-                <Card
-                  hoverable
-                  cover={
-                    <img
-                      alt=""
-                      style={{
-                        width: 240,
-                        height: 200,
-                      }}
-                      src={`${API}/uploads/${item.product_thumb[0]}`}
-                    />
-                  }
+            <Col
+              xs={12}
+              sm={6}
+              md={6}
+              lg={4}
+              xl={4}
+              className="p-1"
+              key={`product-${index}`}
+            >
+              <NavLink to={`/product/${item._id}`} className=" w-full">
+                <img
+                  alt=""
+                  className="w-full"
+                  src={`${API}/uploads/${item.product_thumb[0]}`}
+                />
+                <p
+                  style={{
+                    lineHeight: " 1.5em",
+                    height: "3em",
+                    overflow: "hidden",
+                  }}
                 >
-                  <Meta
-                    title={item.product_name}
-                    description={`${item.product_price}`}
-                  />
-                </Card>
+                  {item.product_name}
+                </p>
+                <p>{`${item.product_price}`}</p>
               </NavLink>
             </Col>
           );

@@ -34,8 +34,8 @@ const SideBar = () => {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
   return (
-    <div>
-      <Layout className="h-128">
+    <div className="h-full">
+      <Layout className="h-full">
         <Sider>
           <div className="demo-logo-vertical" />
           <Menu

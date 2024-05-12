@@ -8,16 +8,6 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchUserInfo } from "../../redux/slice/userSlice";
 
-const items = [
-  {
-    label: <NavLink to="/user">Tài khoản của tôi</NavLink>,
-    key: "0",
-  },
-  {
-    label: <NavLink>Logout</NavLink>,
-    key: "1",
-  },
-];
 const Header = () => {
   const dispatch = useDispatch();
 
@@ -25,6 +15,16 @@ const Header = () => {
   useEffect(() => {
     dispatch(fetchUserInfo());
   }, []);
+  const items = [
+    {
+      label: <NavLink to="/user">Tài khoản của tôi</NavLink>,
+      key: "0",
+    },
+    {
+      label: <NavLink to="/logout">Logout</NavLink>,
+      key: "1",
+    },
+  ];
   return (
     <div className=" w-3/4 m-auto">
       <Row
