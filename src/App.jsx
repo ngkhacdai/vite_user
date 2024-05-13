@@ -19,7 +19,6 @@ import Shop from "./components/shop/Shop";
 import { useEffect, useState } from "react";
 import Register from "./components/register/Register";
 import Logout from "./components/home/Logout";
-import Otp from "./components/register/Otp";
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);

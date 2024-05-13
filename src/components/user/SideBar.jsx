@@ -58,6 +58,7 @@ const SideBar = () => {
           }`}
         >
           <div
+            className="p-2"
             style={{
               background: colorBgContainer,
               borderRadius: borderRadiusLG,
