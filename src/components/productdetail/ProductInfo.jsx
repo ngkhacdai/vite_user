@@ -1,17 +1,43 @@
-import { Button, Radio, Rate } from "antd";
+import { Button, ConfigProvider, Radio, Rate } from "antd";
 import axios from "../../service/customAxios";
-import React, { useState } from "react";
+import { useState } from "react";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { onSelectProduct } from "../../redux/slice/cartSlice";
+import { NavLink } from "react-router-dom";
 
 const ProductInfo = ({ ProductDetail }) => {
+  const dispatch = useDispatch();
   const [attribute, setAttribute] = useState("");
   const [options, setOptions] = useState([]);
   const [count, setCount] = useState(1);
+  console.log(ProductDetail);
   const onSelectAttributed = (e) => {
+    setCount(1);
     setAttribute(e.target.value);
   };
   const onSelectOption = (e) => {
+    setCount(1);
     setOptions(e.target.value);
+  };
+  const payProduct = async () => {
+    if (!attribute || !options) {
+      return toast.error("Hãy chọn các thuộc tính để thêm vào giỏ hàng");
+    }
+    const form = [
+      {
+        productId: window.location.pathname.split("/")[2],
+        shopId: ProductDetail.shop_id,
+        quantity: count,
+        name: ProductDetail.product_name,
+        price: ProductDetail.product_price,
+        color: attribute.color,
+        size: options.size,
+        product_thumb: ProductDetail.product_thumb[0],
+        name_shop: ProductDetail.shop_name,
+      },
+    ];
+    dispatch(onSelectProduct(form));
   };
   const addToCart = async () => {
     if (!attribute || !options) {
@@ -110,12 +136,28 @@ const ProductInfo = ({ ProductDetail }) => {
         <Button onClick={addToCart} type="primary" className="mr-3 ">
           Thêm vào giỏ hàng
         </Button>
-        <Button
-          className="bg-red-600 text-white hover:bg-red-700"
-          type="default"
+        <ConfigProvider
+          theme={{
+            components: {
+              Button: {
+                colorPrimary: "red",
+                algorithm: true,
+              },
+            },
+          }}
         >
-          Mua ngay
-        </Button>
+          {!attribute || !options ? (
+            <Button type="primary" onClick={payProduct}>
+              Mua ngay
+            </Button>
+          ) : (
+            <NavLink to="/checkout">
+              <Button type="primary" onClick={payProduct}>
+                Mua ngay
+              </Button>
+            </NavLink>
+          )}
+        </ConfigProvider>
       </div>
     </div>
   );

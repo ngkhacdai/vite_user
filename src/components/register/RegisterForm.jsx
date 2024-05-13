@@ -43,7 +43,7 @@ const RegisterForm = ({ setIsRegister }) => {
   };
   return (
     <div>
-      <p className="mb-5 text-2xl font-bold">Register</p>
+      <p className="mb-5 text-2xl font-bold">Đăng ký</p>
       {contextHolder}
       <Form
         name="basic"

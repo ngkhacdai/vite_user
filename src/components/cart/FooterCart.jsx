@@ -52,7 +52,6 @@ const FooterCart = () => {
               },
             }}
           >
-            {/* Sử dụng biến trạng thái để kiểm soát việc hiển thị NavLink */}
             {showNavLink && (
               <NavLink to="/checkout">
                 <Button className="w-48 h-11" type="primary">
@@ -60,7 +59,6 @@ const FooterCart = () => {
                 </Button>
               </NavLink>
             )}
-            {/* Hiển thị nút "Mua hàng" mà không sử dụng NavLink */}
             {!showNavLink && (
               <Button
                 onClick={checkoutHandler}

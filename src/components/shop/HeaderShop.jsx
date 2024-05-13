@@ -5,8 +5,17 @@ import { CiShop } from "react-icons/ci";
 import { SlUserFollow } from "react-icons/sl";
 import { IoMdChatbubbles } from "react-icons/io";
 import { MdOutlineLocalPhone } from "react-icons/md";
+import { useEffect, useState } from "react";
 
 const HeaderShop = ({ shopData }) => {
+  const [checkFollower, setCheckFollower] = useState(false);
+  useEffect(() => {
+    const findFollower = shopData.shop.follower.find(
+      (item) => item === localStorage.getItem("userID")
+    );
+    console.log(findFollower);
+    if (findFollower) return setCheckFollower(true);
+  }, []);
   return (
     <div className="w-3/4 m-auto py-2 flex justify-between">
       <div className="w-1/3 bg-slate-400 p-2">
@@ -26,8 +35,8 @@ const HeaderShop = ({ shopData }) => {
         <Row className="flex justify-between mt-2 ">
           <Col span={11} className="">
             <Button className="flex justify-center text-center items-center w-full">
-              <PiPlusThin className="mr-2" />
-              <p>Theo dõi</p>
+              <PiPlusThin className="mr-1" />
+              {checkFollower ? <p>Đã theo dõi</p> : <p>Theo dõi</p>}
             </Button>
           </Col>
           <Col span={11}>

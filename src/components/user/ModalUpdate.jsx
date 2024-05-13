@@ -16,9 +16,10 @@ const ModalUpdate = () => {
     setIsModalOpen(true);
   };
   const handleOk = async () => {
+    console.log(file);
     if (file && fullname && phoneNumber && gender) {
       const formData = new FormData();
-      formData.append("avatar", file);
+      formData.append("avatar", file.originFileObj);
       formData.append("fullName", fullname);
       formData.append("gender", gender);
       formData.append("phoneNumber", phoneNumber);
@@ -37,14 +38,6 @@ const ModalUpdate = () => {
     clearForm();
     setIsModalOpen(false);
   };
-  const normFile = (e) => {
-    console.log("file", e);
-    setFile(e.fileList[0]);
-    if (Array.isArray(e)) {
-      return e;
-    }
-    return e?.fileList;
-  };
   return (
     <div>
       <Button type="primary" onClick={showModal}>
@@ -57,15 +50,15 @@ const ModalUpdate = () => {
         onCancel={handleCancel}
       >
         <Form>
-          <Form.Item
-            label="Avatar"
-            valuePropName="fileList"
-            getValueFromEvent={normFile}
-          >
+          <Form.Item label="Avatar" valuePropName="fileList">
             <Upload
               beforeUpload={() => false}
               maxCount={1}
+              name="avatar"
               listType="picture-card"
+              onChange={(e) => {
+                setFile(e.fileList[0]);
+              }}
             >
               <button
                 style={{

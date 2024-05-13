@@ -1,11 +1,12 @@
 import { Layout, Menu, theme } from "antd";
 const { Content, Sider } = Layout;
-// import { useSelector } from "react-redux";
 import { FileTextOutlined, UserOutlined } from "@ant-design/icons";
 import { NavLink, Outlet } from "react-router-dom";
-
+import { useState } from "react";
+import "./sidebar.css";
 const SideBar = () => {
-  // const profile = useSelector((state) => state.user.profile);
+  const [collapsed, setCollapsed] = useState(false);
+
   function getItem(label, key, icon, children) {
     return {
       key,
@@ -14,6 +15,7 @@ const SideBar = () => {
       label,
     };
   }
+
   const items = [
     getItem("Thông tin cá nhân", "sub1", <UserOutlined />, [
       getItem(<NavLink to={"/user"}>Hồ sơ</NavLink>, "/user"),
@@ -30,41 +32,42 @@ const SideBar = () => {
       <FileTextOutlined />
     ),
   ];
+
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+
   return (
-    <div className="h-full">
-      <Layout className="h-full">
-        <Sider>
-          <div className="demo-logo-vertical" />
-          <Menu
-            theme="dark"
-            defaultSelectedKeys={[window.location.pathname]}
-            mode="inline"
-            items={items}
-          />
-        </Sider>
-        <Layout>
-          <Content
+    <Layout>
+      <Sider
+        collapsible
+        collapsed={collapsed}
+        onCollapse={(value) => setCollapsed(value)}
+      >
+        <Menu
+          theme="dark"
+          defaultSelectedKeys={[window.location.pathname]}
+          mode="inline"
+          items={items}
+        />
+      </Sider>
+      <Layout>
+        <Content
+          className={`overflow-x-auto ${
+            collapsed ? "w-full" : "w-full md:w-auto"
+          }`}
+        >
+          <div
             style={{
-              margin: "10px 16px",
+              background: colorBgContainer,
+              borderRadius: borderRadiusLG,
             }}
           >
-            <div
-              style={{
-                padding: 24,
-                minHeight: "98%",
-                background: colorBgContainer,
-                borderRadius: borderRadiusLG,
-              }}
-            >
-              <Outlet />
-            </div>
-          </Content>
-        </Layout>
+            <Outlet />
+          </div>
+        </Content>
       </Layout>
-    </div>
+    </Layout>
   );
 };
 

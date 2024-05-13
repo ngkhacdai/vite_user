@@ -1,0 +1,7 @@
+:where(.css-dev-only-do-not-override-1okl62o).ant-layout
+  .ant-layout-sider-trigger {
+  position: relative;
+}
+:where(.css-dev-only-do-not-override-1okl62o).ant-layout-header {
+  padding: 0;
+}

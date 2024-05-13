@@ -25,6 +25,8 @@ const Header = () => {
       key: "1",
     },
   ];
+
+  const onSearch = (value, _e, info) => console.log(info?.source, value);
   return (
     <div className=" w-3/4 m-auto">
       <Row
@@ -42,7 +44,7 @@ const Header = () => {
         <Col xs={11} sm={13} md={15} lg={14} xl={14}>
           <Search
             placeholder="input search text"
-            //   onSearch={onSearch}
+            onSearch={onSearch}
             style={
               {
                 // width: 200,

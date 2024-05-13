@@ -81,6 +81,7 @@ const TableProduct = () => {
         pagination={false}
         columns={columns}
         dataSource={productSelected}
+        scroll={{ y: 450, x: 900 }}
       />
     </div>
   );

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAllProduct } from "../../service/productAPI";
-import { Card, Col, Row, Spin } from "antd";
-import Meta from "antd/es/card/Meta";
+import { Col, Row, Spin } from "antd";
 import { API } from "../../service/customAxios";
 import { NavLink } from "react-router-dom";
 import { getAllCategory } from "../../service/category";
@@ -11,6 +10,7 @@ const ListProduct = () => {
   const [product, setProduct] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [category, setCategory] = useState([]);
+  console.log(product);
   useEffect(() => {
     const getData = async () => {
       setProduct(await getAllProduct());

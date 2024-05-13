@@ -74,7 +74,7 @@ const Delivered = () => {
                 </div>
               </div>
               <div className="text-red-500">
-                ₫{item.order_checkout.totalPrice - 30000}
+                ₫{item.order_checkout.totalPrice + item.order_checkout.feeShip}
               </div>
             </div>
             <br />

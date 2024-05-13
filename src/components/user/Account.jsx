@@ -1,8 +1,11 @@
+import { useEffect, useState } from "react";
 import SideBar from "./SideBar";
 
 const Account = () => {
+  const [checkWidth, setCheckWidth] = useState(false);
+  useEffect(() => {});
   return (
-    <div className="w-3/4 m-auto mt-2">
+    <div className="h-full m-auto ">
       <SideBar />
     </div>
   );

@@ -134,6 +134,7 @@ const TableProduct = ({ cart, getData, setIsLoading }) => {
   };
   const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
+      console.log(selectedRows);
       dispatch(onSelectProduct(selectedRows));
     },
   };

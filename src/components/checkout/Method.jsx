@@ -1,4 +1,4 @@
-import { Button, ConfigProvider, Modal, Radio } from "antd";
+import { Button, ConfigProvider, Modal, Radio, notification } from "antd";
 import axios from "../../service/customAxios";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,13 +8,26 @@ const Method = ({ address }) => {
   const dispatch = useDispatch();
   const [value, setValue] = useState("Thanh toán khi nhận hàng");
   const productSelected = useSelector((state) => state.cart.selectProduct);
+  console.log(productSelected);
   const [total, setTotal] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const selectIndex = useSelector((state) => state.address.selectIndex);
+  const [api, contextHolder] = notification.useNotification();
+  const openNotificationWithIcon = (content) => {
+    api["error"]({
+      message: "Notification Error",
+      description: content,
+    });
+  };
   const showModal = () => {
     setIsModalOpen(true);
   };
   const handleOk = async () => {
+    if (address.length === 0) {
+      openNotificationWithIcon("Hãy cập nhật địa chỉ trước");
+      setIsModalOpen(false);
+      return;
+    }
     const shopOrderData = productSelected.map((item) => ({
       shopId: item.shopId,
       shop_discounts: [],
@@ -70,6 +83,7 @@ const Method = ({ address }) => {
   };
   return (
     <div className="bg-white mt-2 p-2">
+      {contextHolder}
       <div className="flex text-center">
         <p className="text-xl  mr-3">Phương thức thanh toán</p>
         <Radio.Group onChange={onChange} value={value}>

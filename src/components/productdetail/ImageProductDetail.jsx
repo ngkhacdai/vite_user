@@ -40,9 +40,7 @@ const ImageProductDetail = ({ ProductDetail }) => {
     <Swiper
       modules={[Navigation, Pagination, Scrollbar, A11y]}
       navigation
-      onSwiper={(swiper) => console.log(swiper)}
       slidesPerView={1}
-      onSlideChange={() => console.log("slide change")}
     >
       {ProductDetail.product_thumb.map((item, index) => {
         return (
