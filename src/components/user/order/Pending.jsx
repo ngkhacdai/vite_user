@@ -9,7 +9,6 @@ import { API } from "../../../service/customAxios";
 const Pending = () => {
   const [orderData, setOrderData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  console.log(orderData);
   const getData = async () => {
     setOrderData(await getAllOrderByStatus("pending"));
     setIsLoading(false);
@@ -17,12 +16,6 @@ const Pending = () => {
   useEffect(() => {
     getData();
   }, []);
-  const items = [
-    {
-      key: 1,
-      lable: <div></div>,
-    },
-  ];
   const convertTimestamp = (timestamp) => {
     const date = new Date(timestamp);
 
@@ -99,6 +92,8 @@ const Pending = () => {
                   Mua lại
                 </Button>
               </div>
+              <br />
+              <hr />
               <br />
             </div>
           );

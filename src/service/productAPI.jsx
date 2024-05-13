@@ -8,3 +8,7 @@ export const getProduct = async (id) => {
   const response = await axios.get(`/product/getProduct/${id}`);
   return response.message;
 };
+export const findProduct = async (name) => {
+  const response = await axios.get(`/product/findProduct/${name}`);
+  return response.message;
+};

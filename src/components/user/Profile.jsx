@@ -1,4 +1,4 @@
-import { Spin } from "antd";
+import { Col, Row, Spin } from "antd";
 import { useSelector } from "react-redux";
 import ModalUpdate from "./ModalUpdate";
 import { API } from "../../service/customAxios";
@@ -28,8 +28,8 @@ const Profile = () => {
       <br />
       <hr />
       <br />
-      <div className="flex justify-between">
-        <div>
+      <Row justify="space-between">
+        <Col>
           <div className="flex inline">
             <p className="mr-4 w-24 text-right">Tên đăng nhập</p>
             <span>{profile.email}</span>
@@ -75,8 +75,7 @@ const Profile = () => {
             </span>
           </div>
           <br />
-          <ModalUpdate />
-        </div>
+        </Col>
         <div>
           <img
             src={`${API}/${profile?.information?.avatar}`}
@@ -84,6 +83,9 @@ const Profile = () => {
             alt="Chưa có thông tin"
           />
         </div>
+      </Row>
+      <div className="mt-3">
+        <ModalUpdate />
       </div>
     </div>
   );

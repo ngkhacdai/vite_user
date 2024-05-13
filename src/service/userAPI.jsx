@@ -24,3 +24,11 @@ export const updateProfile = async (form) => {
   const response = await axios.put("/user/updateUser", form);
   return response;
 };
+export const changePassword = async (form) => {
+  const response = await axios.put("/user/changePassword", form);
+  return response;
+};
+export const followShop = async (idShop) => {
+  const response = await axios.get(`/user/followShop/${idShop}`);
+  return response;
+};

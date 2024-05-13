@@ -11,7 +11,7 @@ const Account = () => {
 
   useEffect(() => {});
   return (
-    <div className="h-full m-auto ">
+    <div className="h-full m-auto w-3/4">
       {isDesktopOrLaptop && <SideBar />}
       {isTabletOrMobile && <NavBar />}
     </div>

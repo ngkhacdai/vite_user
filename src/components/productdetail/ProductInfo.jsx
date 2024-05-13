@@ -76,19 +76,19 @@ const ProductInfo = ({ ProductDetail }) => {
       <div className="ml-3">
         <h2 className="text-2xl font-bold">{ProductDetail.product_name}</h2>
         <br />
-        <div>
-          <span>{ProductDetail.product_ratingAverage}</span>
-          <span>
+        <div className="flex items-center">
+          <span className="mr-2">{ProductDetail.product_ratingAverage}</span>
+          <span className="mr-2">
             <Rate
               allowHalf
               defaultValue={ProductDetail.product_ratingAverage}
               disabled
             />
           </span>
-          <span>{ProductDetail.reviews.length}</span>
-          <span> Đánh giá</span>
-          <span>{ProductDetail.product_sold}</span>
-          <span>Đã bán</span>
+          <span className="mr-2">{ProductDetail.reviews.length}</span>
+          <span className="mr-2"> Đánh giá</span>
+          <span className="mr-2">{ProductDetail.product_sold}</span>
+          <span className="mr-2">Đã bán</span>
         </div>
         <br />
         <h2 className="text-xl text-red-500 font-bold ">

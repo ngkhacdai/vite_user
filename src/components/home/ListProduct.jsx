@@ -10,7 +10,6 @@ const ListProduct = () => {
   const [product, setProduct] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [category, setCategory] = useState([]);
-  console.log(product);
   useEffect(() => {
     const getData = async () => {
       setProduct(await getAllProduct());

@@ -26,7 +26,10 @@ const Header = () => {
     },
   ];
 
-  const onSearch = (value, _e, info) => console.log(info?.source, value);
+  const onSearch = (value) => {
+    // console.log(info?.source, value);
+    window.location.href = `/search/${value}`;
+  };
   return (
     <div className=" w-3/4 m-auto">
       <Row
@@ -42,15 +45,7 @@ const Header = () => {
           </a>
         </Col>
         <Col xs={11} sm={13} md={15} lg={14} xl={14}>
-          <Search
-            placeholder="input search text"
-            onSearch={onSearch}
-            style={
-              {
-                // width: 200,
-              }
-            }
-          />
+          <Search placeholder="input search text" onSearch={onSearch} />
         </Col>
         <Col span={2}>
           <a href="/cart">
