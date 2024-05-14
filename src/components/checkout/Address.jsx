@@ -4,7 +4,6 @@ import { onSelectIndex } from "../../redux/slice/addressSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const Address = ({ address }) => {
-  console.log(address);
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const selectIndex = useSelector((state) => state.address.selectIndex);
@@ -24,7 +23,6 @@ const Address = ({ address }) => {
   return (
     <div className="bg-white p-2">
       <div className="text-xl text-red-400">Địa chỉ nhận hàng</div>
-      <br />
       <Modal
         title="Địa chỉ của tôi"
         visible={isModalOpen} // visible thay cho open
@@ -32,7 +30,6 @@ const Address = ({ address }) => {
         onCancel={handleCancel}
       >
         <hr />
-        <br />
         <Radio.Group onChange={handleRadioChange} value={selectIndex}>
           <Space direction="vertical">
             {address.map((item, index) => {

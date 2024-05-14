@@ -101,14 +101,21 @@ const ModalAddress = ({ getData }) => {
         onOk={handleSubmit}
         onCancel={handleCancel}
       >
-        <Form>
-          <Form.Item label="Tên địa chỉ">
+        <Form
+          labelCol={{
+            span: 24,
+          }}
+          wrapperCol={{
+            span: 24,
+          }}
+        >
+          <Form.Item name="addressName" label="Tên địa chỉ">
             <Input
               value={nameAddress}
               onChange={(e) => setNameAddress(e.target.value)}
             />
           </Form.Item>
-          <Form.Item label="Địa chỉ">
+          <Form.Item name="selectAddress" label="Địa chỉ">
             <Select
               className="form-select form-select-sm mb-3"
               value={selectedCity}
@@ -154,7 +161,7 @@ const ModalAddress = ({ getData }) => {
               ))}
             </Select>
           </Form.Item>
-          <Form.Item label={"Địa chỉ cụ thể"}>
+          <Form.Item name="address" label={"Địa chỉ cụ thể"}>
             <Input
               value={address}
               onChange={(e) => setAddress(e.target.value)}

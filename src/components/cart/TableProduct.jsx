@@ -16,7 +16,7 @@ const TableProduct = ({ cart, getData, setIsLoading }) => {
               src={`${API}/uploads/${record.product_thumb}`}
               style={{ width: "50px", height: "50px" }}
             />
-            <span className="line-clamp-2 pl-2">{record.name}</span>
+            <span className="w-56 line-clamp-2 pl-2">{record.name}</span>
           </div>
         );
       },
@@ -34,7 +34,16 @@ const TableProduct = ({ cart, getData, setIsLoading }) => {
     },
     {
       title: "Đơn giá",
-      dataIndex: "price",
+      render: (record) => {
+        return (
+          <p>
+            {record.price.toLocaleString("en-US", {
+              style: "currency",
+              currency: "VND",
+            })}
+          </p>
+        );
+      },
     },
     {
       title: "Số lượng",
@@ -51,7 +60,15 @@ const TableProduct = ({ cart, getData, setIsLoading }) => {
     {
       title: "Số tiền",
       render: (record) => {
-        return <p>{record.price * record.quantity}đ</p>;
+        let total = record.price * record.quantity;
+        return (
+          <p>
+            {total.toLocaleString("en-US", {
+              style: "currency",
+              currency: "VND",
+            })}
+          </p>
+        );
       },
     },
     {
@@ -59,12 +76,12 @@ const TableProduct = ({ cart, getData, setIsLoading }) => {
       render: (record) => {
         return (
           <div>
-            <button
+            <Button
               onClick={() => onDeleteProduct(record)}
               className="hover:text-red-500"
             >
               Xóa
-            </button>
+            </Button>
           </div>
         );
       },
@@ -134,7 +151,6 @@ const TableProduct = ({ cart, getData, setIsLoading }) => {
   };
   const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
-      console.log(selectedRows);
       dispatch(onSelectProduct(selectedRows));
     },
   };
@@ -152,7 +168,7 @@ const TableProduct = ({ cart, getData, setIsLoading }) => {
         dataSource={cart.cart_products}
         pagination={false}
         className="w-full"
-        scroll={{ y: 450, x: 900 }}
+        scroll={{ x: 900 }}
       />
     </div>
   );

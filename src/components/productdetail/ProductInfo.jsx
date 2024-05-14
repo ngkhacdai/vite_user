@@ -1,4 +1,4 @@
-import { Button, ConfigProvider, Radio, Rate } from "antd";
+import { Button, Col, ConfigProvider, Radio, Rate, Row } from "antd";
 import axios from "../../service/customAxios";
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -9,7 +9,7 @@ import { NavLink } from "react-router-dom";
 const ProductInfo = ({ ProductDetail }) => {
   const dispatch = useDispatch();
   const [attribute, setAttribute] = useState("");
-  const [options, setOptions] = useState([]);
+  const [options, setOptions] = useState("");
   const [count, setCount] = useState(1);
   console.log(ProductDetail);
   const onSelectAttributed = (e) => {
@@ -73,29 +73,34 @@ const ProductInfo = ({ ProductDetail }) => {
 
   return (
     <div>
-      <div className="ml-3">
+      <div className="">
         <h2 className="text-2xl font-bold">{ProductDetail.product_name}</h2>
-        <br />
-        <div className="flex items-center">
-          <span className="mr-2">{ProductDetail.product_ratingAverage}</span>
-          <span className="mr-2">
-            <Rate
-              allowHalf
-              defaultValue={ProductDetail.product_ratingAverage}
-              disabled
-            />
-          </span>
-          <span className="mr-2">{ProductDetail.reviews.length}</span>
-          <span className="mr-2"> Đánh giá</span>
-          <span className="mr-2">{ProductDetail.product_sold}</span>
-          <span className="mr-2">Đã bán</span>
-        </div>
-        <br />
+        <Row gutter={[10, 10]} className="flex items-center">
+          <Col>
+            <span>
+              <Rate
+                allowHalf
+                defaultValue={ProductDetail.product_ratingAverage}
+                disabled
+              />
+            </span>
+          </Col>
+          <Col>
+            <span>{ProductDetail.reviews.length}</span>
+            <span> Đánh giá</span>
+          </Col>
+          <Col>
+            <span>{ProductDetail.product_sold}</span>
+            <span>Đã bán</span>
+          </Col>
+        </Row>
         <h2 className="text-xl text-red-500 font-bold ">
-          {ProductDetail.product_price}đ
+          {ProductDetail.product_price.toLocaleString("en-US", {
+            style: "currency",
+            currency: "VND",
+          })}
         </h2>
-        <br />
-        <div>
+        <div className="mt-2">
           <Radio.Group
             defaultValue={attribute.color}
             onChange={onSelectAttributed}
@@ -109,9 +114,12 @@ const ProductInfo = ({ ProductDetail }) => {
             })}
           </Radio.Group>
         </div>
-        <br />
         <div>
-          <Radio.Group defaultValue={options.size} onChange={onSelectOption}>
+          <Radio.Group
+            className="my-2"
+            defaultValue={options.size}
+            onChange={onSelectOption}
+          >
             {attribute &&
               attribute.options.map((item, index) => {
                 return (
@@ -122,16 +130,13 @@ const ProductInfo = ({ ProductDetail }) => {
               })}
           </Radio.Group>
         </div>
-        <br />
         <div>Số lượng hàng còn lại: {options.options_quantity}</div>
       </div>
-      <br />
-      <div>
+      <div className="my-2">
         <Button onClick={countDecrement}>-</Button>
         <span className="mx-5">{count}</span>
         <Button onClick={countIncrement}>+</Button>
       </div>
-      <br />
       <div>
         <Button onClick={addToCart} type="primary" className="mr-3 ">
           Thêm vào giỏ hàng

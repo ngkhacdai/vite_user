@@ -19,7 +19,7 @@ const CheckOut = () => {
     return <Spin fullscreen />;
   }
   return (
-    <div className="m-auto w-3/4 mt-2">
+    <div className="mx-auto md:w-3/4">
       <Address address={address} />
       <TableProduct />
       <Method address={address} />

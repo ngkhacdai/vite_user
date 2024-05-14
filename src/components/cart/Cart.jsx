@@ -23,8 +23,8 @@ const Cart = () => {
     return <Spin fullscreen />;
   }
   return (
-    <div className="w-3/4 m-auto">
-      <div className=" mt-2 bg-white">
+    <div className="md:w-3/4 mx-auto">
+      <div className=" bg-white">
         <TableProduct
           cart={cart}
           setIsLoading={setIsLoading}

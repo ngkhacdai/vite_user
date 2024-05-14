@@ -1,4 +1,12 @@
-import { Button, ConfigProvider, Modal, Radio, notification } from "antd";
+import {
+  Button,
+  Col,
+  ConfigProvider,
+  Modal,
+  Radio,
+  Row,
+  notification,
+} from "antd";
 import axios from "../../service/customAxios";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,7 +16,6 @@ const Method = ({ address }) => {
   const dispatch = useDispatch();
   const [value, setValue] = useState("Thanh toán khi nhận hàng");
   const productSelected = useSelector((state) => state.cart.selectProduct);
-  console.log(productSelected);
   const [total, setTotal] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const selectIndex = useSelector((state) => state.address.selectIndex);
@@ -75,70 +82,90 @@ const Method = ({ address }) => {
     setTotal(tong);
   }, [productSelected]);
   const onChange = (e) => {
-    console.log("radio checked", e.target.value);
     setValue(e.target.value);
   };
   const payhandle = () => {
     showModal();
   };
+
   return (
     <div className="bg-white mt-2 p-2">
       {contextHolder}
-      <div className="flex text-center">
-        <p className="text-xl  mr-3">Phương thức thanh toán</p>
-        <Radio.Group onChange={onChange} value={value}>
-          <Radio.Button value="Thanh toán khi nhận hàng">
-            Thanh toán khi nhận hàng
-          </Radio.Button>
-          <Radio.Button value="Paypal">Paypal</Radio.Button>
-        </Radio.Group>
-      </div>
+      <Row gutter={[10, 10]} className="flex text-center py-2">
+        <Col>
+          <p className="text-xl  mr-3">Phương thức thanh toán</p>
+        </Col>
+        <Col>
+          <Radio.Group onChange={onChange} value={value}>
+            <Radio.Button value="Thanh toán khi nhận hàng">
+              Thanh toán khi nhận hàng
+            </Radio.Button>
+            <Radio.Button value="Paypal">Paypal</Radio.Button>
+          </Radio.Group>
+        </Col>
+      </Row>
       <div>
         <div className="flex justify-end">
           <p>Tổng tiền hàng:</p>
-          <span className="w-48 text-right">₫{total}</span>
+          <span className="w-48 text-right">
+            {total.toLocaleString("en-US", {
+              style: "currency",
+              currency: "VND",
+            })}
+          </span>
         </div>
         <div className="flex justify-end">
           <p>Phí vận chuyển:</p>
-          <span className="w-48 text-right">₫{30000}</span>
+          <span className="w-48 text-right">₫30,000</span>
         </div>
         <div className="flex justify-end">
           <p>Tổng tiền hàng:</p>
           <span className="w-48 text-right text-xl text-red-600">
-            ₫{total + 30000}
+            {(total + 30000).toLocaleString("en-US", {
+              style: "currency",
+              currency: "VND",
+            })}
           </span>
         </div>
       </div>
-      <br />
-      <hr />
-      <div className="flex justify-between p-5 items-center">
-        <p>
-          Nhấn "Đặt hàng" đồng nghĩa với việc bạn đồng ý tuân theo điều khoản
-          của shop
-        </p>
-        <ConfigProvider
-          theme={{
-            components: {
-              Button: {
-                colorPrimary: "#00b96b",
-                algorithm: true,
+      <Row gutter={[10, 10]} className="flex justify-between p-5 items-center">
+        <Col>
+          <p>
+            Nhấn "Đặt hàng" đồng nghĩa với việc bạn đồng ý tuân theo điều khoản
+            của shop
+          </p>
+        </Col>
+        <Col xs={24} md={12}>
+          <ConfigProvider
+            theme={{
+              components: {
+                Button: {
+                  colorPrimary: "#00b96b",
+                  algorithm: true,
+                },
               },
-            },
-          }}
-        >
-          <Button onClick={payhandle} className="w-56 h-12" type="primary">
-            Đặt hàng
-          </Button>
-        </ConfigProvider>
+            }}
+          >
+            <Button
+              onClick={payhandle}
+              className="w-full md:w-auto md:min-w-[14rem] h-12"
+              type="primary"
+            >
+              Đặt hàng
+            </Button>
+          </ConfigProvider>
+        </Col>
         <Modal
           title="Thanh toán"
           open={isModalOpen}
           onOk={handleOk}
           onCancel={handleCancel}
+          okText="Có"
+          cancelText="Hủy"
         >
           <p>Bạn có muốn thanh toán không?</p>
         </Modal>
-      </div>
+      </Row>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import { Affix } from "antd";
 import Header from "./Header";
 import { Outlet } from "react-router-dom";
+import Footer from "./Footer";
 
 const Home = () => {
   return (
@@ -11,7 +12,9 @@ const Home = () => {
         </div>
       </Affix>
       <Outlet />
-      {/* <Footer /> */}
+      {/* <div className="bg-white">
+        <Footer />
+      </div> */}
     </div>
   );
 };

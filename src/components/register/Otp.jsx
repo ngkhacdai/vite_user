@@ -4,9 +4,12 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { API } from "../../service/customAxios";
 import { notification } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const Otp = ({ isRegister, setIsRegister }) => {
   const [api, contextHolder] = notification.useNotification();
+  const navigate = useNavigate();
+
   const [count, setCount] = useState(60);
   const openNotificationWithIcon = (content) => {
     api["error"]({
@@ -28,7 +31,8 @@ const Otp = ({ isRegister, setIsRegister }) => {
     await axios
       .post(`${API}/v1/api/access/verifyOtp`, form)
       .then((res) => {
-        console.log(res);
+        localStorage.setItem("userID", res.data.newUser._id);
+        navigate("/updateprofile");
       })
       .catch(() => {
         openNotificationWithIcon("Mã OTP sai");

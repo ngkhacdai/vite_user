@@ -11,7 +11,6 @@ const Shop = () => {
   const [shopDiscount, setShopDiscount] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   //   console.log(window.location.pathname.slice("/")[2]);
-  console.log(shopData);
   const getData = async () => {
     setShopData(await getShop(window.location.pathname.split("/")[2]));
     setShopDiscount(
@@ -30,8 +29,10 @@ const Shop = () => {
       <div className="bg-white">
         <HeaderShop shopData={shopData} />
       </div>
-      <ListDiscount shopDiscount={shopDiscount} />
-      <ListProductShop shopData={shopData} />
+      <div className="md:w-3/4  mx-auto mt-2">
+        <ListDiscount shopDiscount={shopDiscount} />
+        <ListProductShop shopData={shopData} />
+      </div>
     </div>
   );
 };

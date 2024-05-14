@@ -49,8 +49,28 @@ const ModalUpdate = () => {
         onOk={handleOk}
         onCancel={handleCancel}
       >
-        <Form>
-          <Form.Item label="Avatar" valuePropName="fileList">
+        <Form
+          name="basic"
+          labelCol={{
+            span: 24,
+          }}
+          wrapperCol={{
+            span: 24,
+          }}
+          className="w-full text-center"
+          autoComplete="off"
+        >
+          <Form.Item
+            label="Avatar"
+            name="avatar"
+            rules={[
+              {
+                required: true,
+                message: "Hãy chọn ảnh",
+              },
+            ]}
+            valuePropName="fileList"
+          >
             <Upload
               beforeUpload={() => false}
               maxCount={1}
@@ -78,7 +98,17 @@ const ModalUpdate = () => {
               </button>
             </Upload>
           </Form.Item>
-          <Form.Item label="Họ và tên">
+          <Form.Item
+            rules={[
+              {
+                required: true,
+                message: "Hãy điền họ và tên",
+              },
+            ]}
+            label="Họ và tên"
+            name="fullName"
+            required={true}
+          >
             <Input
               value={fullname}
               onChange={(e) => {
@@ -86,7 +116,18 @@ const ModalUpdate = () => {
               }}
             />
           </Form.Item>
-          <Form.Item label="Số điện thoại">
+          <Form.Item
+            label="Số điện thoại"
+            rules={[
+              {
+                required: true,
+                min: 9,
+                message: "Số điện thoại có ít nhất 9 số",
+              },
+            ]}
+            required={true}
+            name="phone"
+          >
             <Input
               type="Number"
               value={phoneNumber}

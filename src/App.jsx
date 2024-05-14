@@ -20,6 +20,7 @@ import { useEffect, useState } from "react";
 import Register from "./components/register/Register";
 import Logout from "./components/home/Logout";
 import Search from "./components/search/Search";
+import UpdateProfile from "./components/register/UpdateProfile";
 function App() {
   const [isLogin, setIsLogin] = useState(false);
 
@@ -55,6 +56,7 @@ function App() {
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/updateprofile" element={<UpdateProfile />} />
       </Routes>
     </BrowserRouter>
   );

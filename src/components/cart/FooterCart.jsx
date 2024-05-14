@@ -16,8 +16,6 @@ const FooterCart = () => {
       tong += price;
     });
     setTotalCart(tong);
-
-    // Kiểm tra xem có đủ sản phẩm được chọn hay không để hiển thị NavLink
     setShowNavLink(productSelected.length > 0);
   }, [productSelected]);
 
@@ -29,19 +27,22 @@ const FooterCart = () => {
   };
 
   return (
-    <div>
-      <Row
-        gutter={[0, 20]}
-        justify={"end"}
-        className="bg-white w-full h-24 items-center p-2 "
-      >
-        <Col>
-          <div>
-            <p>Tổng thanh toán ({productSelected.length} sản phẩm): </p>
-            <span className="text-red-500 font text-2xl"> đ{totalCart}</span>
+    <div className="bg-white w-full p-2">
+      <Row gutter={[0, 20]} justify={"space-between"} className="items-center">
+        <Col xs={24} md={12} className="mb-2 md:mb-0">
+          <div className="flex flex-col md:flex-row md:items-center">
+            <p className="pr-2 mb-1 md:mb-0">
+              Tổng thanh toán ({productSelected.length} sản phẩm):{" "}
+            </p>
+            <span className="text-red-500 font-semibold text-2xl">
+              {totalCart.toLocaleString("en-US", {
+                style: "currency",
+                currency: "VND",
+              })}
+            </span>
           </div>
         </Col>
-        <Col>
+        <Col xs={24} md={12} className="flex justify-end">
           <ConfigProvider
             theme={{
               components: {
@@ -52,17 +53,16 @@ const FooterCart = () => {
               },
             }}
           >
-            {showNavLink && (
-              <NavLink to="/checkout">
-                <Button className="w-48 h-11" type="primary">
+            {showNavLink ? (
+              <NavLink to="/checkout" className="w-full md:w-auto">
+                <Button className="w-full md:w-48 h-11" type="primary">
                   Mua hàng
                 </Button>
               </NavLink>
-            )}
-            {!showNavLink && (
+            ) : (
               <Button
                 onClick={checkoutHandler}
-                className="w-48 h-11"
+                className="w-full md:w-48 h-11"
                 type="primary"
               >
                 Mua hàng
@@ -83,7 +83,6 @@ const FooterCart = () => {
         pauseOnHover
         theme="light"
       />
-      <ToastContainer />
     </div>
   );
 };

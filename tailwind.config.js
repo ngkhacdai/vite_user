@@ -6,6 +6,13 @@ export default {
       spacing: {
         128: "38rem",
       },
+      borderWidth: {
+        1: "1px",
+        0.1: "0.2rem",
+      },
+      zIndex: {
+        1: "1",
+      },
     },
   },
   plugins: [],

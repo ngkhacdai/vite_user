@@ -25,8 +25,7 @@ const ChangePassword = () => {
   };
   return (
     <div>
-      <p className="text-xl font-bold">Đổi mật khẩu</p>
-      <br />
+      <p className="text-xl font-bold mb-2">Đổi mật khẩu</p>
       <hr />
       <div className="mt-2">
         <Form

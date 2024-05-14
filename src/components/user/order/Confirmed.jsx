@@ -5,11 +5,11 @@ import { CiCircleQuestion, CiShop } from "react-icons/ci";
 import { MdOutlineLocalShipping } from "react-icons/md";
 import { IoMdChatbubbles } from "react-icons/io";
 import { API } from "../../../service/customAxios";
+import { NavLink } from "react-router-dom";
 
 const Comfirmed = () => {
   const [orderData, setOrderData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  console.log(orderData);
   const getData = async () => {
     setOrderData(await getAllOrderByStatus("shipped"));
     setIsLoading(false);
@@ -40,16 +40,18 @@ const Comfirmed = () => {
         .map((item, index) => {
           return (
             <div key={`order-${index}`}>
-              <Row justify="space-between">
+              <Row justify="space-between" className="mb-2 mt-2">
                 <Col className="flex items-center">
                   <CiShop className="mr-2" />
                   <p className="mr-2  font-bold">{item.name_shop}</p>
                   <Button type="primary" className="mr-2 flex items-center">
                     <IoMdChatbubbles />
                   </Button>
-                  <Button className="flex items-center">
-                    <CiShop />
-                  </Button>
+                  <NavLink to={`/shop/${item.shopId}`}>
+                    <Button className="flex items-center">
+                      <CiShop />
+                    </Button>
+                  </NavLink>
                 </Col>
                 <Col className="flex items-center">
                   <MdOutlineLocalShipping />
@@ -68,8 +70,7 @@ const Comfirmed = () => {
                   </Dropdown>
                 </Col>
               </Row>
-              <br />
-              <div className="flex justify-between">
+              <div className="flex justify-between mb-2">
                 <div className="flex">
                   <img
                     className="w-24 h-24 mr-2"
@@ -87,15 +88,14 @@ const Comfirmed = () => {
                   {item.order_checkout.totalPrice + item.order_checkout.feeShip}
                 </div>
               </div>
-              <br />
-              <div className="flex justify-end">
-                <Button className="mr-2" type="primary">
-                  Mua lại
-                </Button>
-              </div>
-              <br />
+              <NavLink to={`/product/${item.product_attributes.productId}`}>
+                <div className="flex justify-end mb-2">
+                  <Button className="mr-2" type="primary">
+                    Mua lại
+                  </Button>
+                </div>
+              </NavLink>
               <hr />
-              <br />
             </div>
           );
         })}

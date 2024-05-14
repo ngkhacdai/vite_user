@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 const ShopInfor = ({ ProductDetail }) => {
   return (
-    <div className="bg-white mt-3 pb-2 w-full flex flex-row items-center	">
+    <div className="bg-white mt-3 pb-2 w-full flex flex-row items-center">
       <div className="ml-2">
         <img
           className="w-24 h-24 rounded-full border-black border mt-3"

@@ -25,7 +25,7 @@ const ProductDetail = () => {
   }
   return (
     <div>
-      <div className="bg-white mt-3 w-3/4 m-auto h-128">
+      <div className=" md:w-3/4  mx-auto">
         <Row className="bg-white p-2">
           <Col xs={24} sm={24} md={24} lg={24} xl={11}>
             <ImageProductDetail ProductDetail={ProductDetail} />

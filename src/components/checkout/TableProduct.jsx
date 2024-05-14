@@ -57,7 +57,14 @@ const TableProduct = () => {
     {
       title: "Đơn giá",
       render: (record) => {
-        return <p>₫{record.price}</p>;
+        return (
+          <p>
+            {record.price.toLocaleString("en-US", {
+              style: "currency",
+              currency: "VND",
+            })}
+          </p>
+        );
       },
     },
     {
@@ -67,9 +74,16 @@ const TableProduct = () => {
       },
     },
     {
-      title: "Đơn giá",
+      title: "Số tiền",
       render: (record) => {
-        return <p>₫{record.price * record.quantity}</p>;
+        return (
+          <p>
+            {(record.price * record.quantity).toLocaleString("en-US", {
+              style: "currency",
+              currency: "VND",
+            })}
+          </p>
+        );
       },
     },
   ];
@@ -81,7 +95,7 @@ const TableProduct = () => {
         pagination={false}
         columns={columns}
         dataSource={productSelected}
-        scroll={{ y: 450, x: 900 }}
+        scroll={{ x: 900 }}
       />
     </div>
   );

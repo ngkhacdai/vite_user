@@ -22,20 +22,17 @@ const Profile = () => {
     return <Spin fullscreen />;
   }
   return (
-    <div>
-      <h3 className="text-xl">Hồ sơ của tôi</h3>
-      <p>Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
-      <br />
+    <div className="pl-2">
+      <h3 className="text-xl mb-2">Hồ sơ của tôi</h3>
+      <p className="mb-2">Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
       <hr />
-      <br />
       <Row justify="space-between">
         <Col>
-          <div className="flex inline">
+          <div className="flex inline mb-2">
             <p className="mr-4 w-24 text-right">Tên đăng nhập</p>
             <span>{profile.email}</span>
           </div>
-          <br />
-          <div className="flex inline">
+          <div className="flex inline mb-2">
             <p className="mr-4 w-24 text-right">Tên</p>
             <p>
               {profile?.information ? (
@@ -45,13 +42,11 @@ const Profile = () => {
               )}
             </p>
           </div>
-          <br />
-          <div className="flex inline">
+          <div className="flex inline mb-2">
             <p className="mr-4 w-24 text-right">Email</p>
             <span>{hideEmail(profile?.email)}</span>
           </div>
-          <br />
-          <div className="flex inline">
+          <div className="flex inline mb-2">
             <p className="mr-4 w-24 text-right">Số điện thoại</p>
             <span>
               {profile?.information ? (
@@ -61,20 +56,18 @@ const Profile = () => {
               )}
             </span>
           </div>
-          <br />
-          <div className="flex inline">
+          <div className="flex inline mb-2">
             <p className="mr-4 w-24 text-right">Giới tính</p>
             <span>
               <p>
                 {profile?.information ? (
-                  profile?.information?.fullName
+                  profile?.information?.gender
                 ) : (
                   <p>Hãy cập nhật thông tin</p>
                 )}
               </p>
             </span>
           </div>
-          <br />
         </Col>
         <div>
           <img
@@ -85,7 +78,7 @@ const Profile = () => {
         </div>
       </Row>
       <div className="mt-3">
-        <ModalUpdate />
+        <ModalUpdate profile={profile} />
       </div>
     </div>
   );

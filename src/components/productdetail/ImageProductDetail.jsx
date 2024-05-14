@@ -45,7 +45,7 @@ const ImageProductDetail = ({ ProductDetail }) => {
       {ProductDetail.product_thumb.map((item, index) => {
         return (
           <SwiperSlide span={4} key={`product_thumb-${index}`}>
-            <img src={`${API}/uploads/${item}`} className="h-128 w-full" />
+            <img src={`${API}/uploads/${item}`} className="h-96 w-full" />
           </SwiperSlide>
         );
       })}

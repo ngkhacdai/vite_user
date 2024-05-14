@@ -44,15 +44,13 @@ const Address = () => {
   }
   return (
     <div>
-      <div className="flex items-center justify-between">
-        <p className="text-xl">Địa chỉ của tôi</p>
+      <div className="flex items-center pb-2 justify-between">
+        <p className="text-xl ">Địa chỉ của tôi</p>
         <ModalAddress getData={() => getData()} />
       </div>
-      <br />
       <hr />
       <div>
         <p className="text-xl">Địa chỉ</p>
-        <br />
       </div>
       <div>
         {address &&
@@ -60,7 +58,7 @@ const Address = () => {
           address.map((item, index) => {
             return (
               <div key={`address-${index}`}>
-                <div className="flex justify-between mt-2">
+                <div className="flex justify-between my-2">
                   <div>
                     <div className="flex ">
                       <p className="mr-2">{item.userinfor.userName}</p>
@@ -78,7 +76,6 @@ const Address = () => {
                     />
                   </div>
                 </div>
-                <br />
                 <hr />
               </div>
             );

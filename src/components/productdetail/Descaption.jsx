@@ -12,10 +12,7 @@ const Descaption = ({ ProductDetail }) => {
         {ProductDetail.product_thumb.map((item, index) => {
           return (
             <div key={`descaption-${index}`}>
-              <img
-                src={`${API}/uploads/${item}`}
-                className="mt-2 h-128 w-full"
-              />
+              <img src={`${API}/uploads/${item}`} className="mt-2 w-full" />
             </div>
           );
         })}

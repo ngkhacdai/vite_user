@@ -1,5 +1,4 @@
 const ListDiscount = ({ shopDiscount }) => {
-  console.log(shopDiscount);
   return <div></div>;
 };
 
