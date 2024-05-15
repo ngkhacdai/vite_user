@@ -1,17 +1,17 @@
-import io from "socket.io-client";
-import { API } from "../customAxios";
+// import io from "socket.io-client";
+// // import { API } from "../customAxios";
 
-const socketService = () => {
-  const socket = io(API);
-  socket.on("connect", () => {
-    console.log("connected");
-  });
-  socket.on("disconnect", (data) => {
-    console.log("=== socket disconnected ====");
-  });
-  socket.on("error", (data) => {
-    console.log("socket error", data);
-  });
-};
+// const socket = io("http://localhost:3000/", {
+//   transports: ["websocket"],
+// });
+// socket.on("connect", () => {
+//   console.log("connected");
+// });
+// socket.on("disconnect", () => {
+//   console.log("=== socket disconnected ====");
+// });
+// socket.on("error", (data) => {
+//   console.log("socket error", data);
+// });
 
-export default socketService;
+// export default socket;
