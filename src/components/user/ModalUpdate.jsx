@@ -16,7 +16,6 @@ const ModalUpdate = () => {
     setIsModalOpen(true);
   };
   const handleOk = async () => {
-    console.log(file);
     if (file && fullname && phoneNumber && gender) {
       const formData = new FormData();
       formData.append("avatar", file.originFileObj);

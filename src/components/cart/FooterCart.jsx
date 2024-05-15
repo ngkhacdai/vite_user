@@ -82,7 +82,7 @@ const FooterCart = () => {
         draggable
         pauseOnHover
         theme="light"
-      />
+      ></ToastContainer>
     </div>
   );
 };

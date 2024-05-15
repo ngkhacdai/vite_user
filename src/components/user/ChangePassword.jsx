@@ -15,7 +15,6 @@ const ChangePassword = () => {
       };
       changePassword(form)
         .then((res) => {
-          console.log(res);
           toast.success("Đổi mật khẩu thành công");
         })
         .catch(() => {

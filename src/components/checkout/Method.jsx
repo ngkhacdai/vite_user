@@ -11,6 +11,7 @@ import axios from "../../service/customAxios";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { onSelectIndex } from "../../redux/slice/addressSlice";
+import { ToastContainer, toast } from "react-toastify";
 
 const Method = ({ address }) => {
   const dispatch = useDispatch();
@@ -34,6 +35,10 @@ const Method = ({ address }) => {
       openNotificationWithIcon("Hãy cập nhật địa chỉ trước");
       setIsModalOpen(false);
       return;
+    }
+    if (productSelected.length === 0) {
+      setIsModalOpen(false);
+      return toast.error("Không có sản phẩm nào");
     }
     const shopOrderData = productSelected.map((item) => ({
       shopId: item.shopId,
@@ -104,38 +109,67 @@ const Method = ({ address }) => {
           </Radio.Group>
         </Col>
       </Row>
-      <div>
-        <div className="flex justify-end">
+      <Row gutter={[10, 10]} justify="end">
+        <Col
+          xs={{ flex: "100%" }}
+          sm={{ flex: "60%" }}
+          md={{ flex: "50%" }}
+          lg={{ flex: "40%" }}
+          xl={{ flex: "30%" }}
+          className="flex justify-between"
+        >
           <p>Tổng tiền hàng:</p>
-          <span className="w-48 text-right">
+          <span className="">
             {total.toLocaleString("en-US", {
               style: "currency",
               currency: "VND",
             })}
           </span>
-        </div>
-        <div className="flex justify-end">
-          <p>Phí vận chuyển:</p>
-          <span className="w-48 text-right">₫30,000</span>
-        </div>
-        <div className="flex justify-end">
+        </Col>
+      </Row>
+      <Row gutter={[10, 10]} justify="end">
+        <Col
+          xs={{ flex: "100%" }}
+          sm={{ flex: "60%" }}
+          md={{ flex: "50%" }}
+          lg={{ flex: "40%" }}
+          xl={{ flex: "30%" }}
+          className="flex justify-between"
+        >
+          <p className="">Phí vận chuyển:</p>
+          <span className="">₫30,000</span>
+        </Col>
+      </Row>
+      <Row gutter={[10, 10]} justify="end">
+        <Col
+          xs={{ flex: "100%" }}
+          sm={{ flex: "60%" }}
+          md={{ flex: "50%" }}
+          lg={{ flex: "40%" }}
+          xl={{ flex: "30%" }}
+          className="flex justify-between"
+        >
           <p>Tổng tiền hàng:</p>
-          <span className="w-48 text-right text-xl text-red-600">
+          <span className=" text-xl text-red-600">
             {(total + 30000).toLocaleString("en-US", {
               style: "currency",
               currency: "VND",
             })}
           </span>
-        </div>
-      </div>
-      <Row gutter={[10, 10]} className="flex justify-between p-5 items-center">
+        </Col>
+      </Row>
+      <Row
+        justify="space-between"
+        gutter={[10, 10]}
+        className="flex justify-between p-5 items-center"
+      >
         <Col>
           <p>
             Nhấn "Đặt hàng" đồng nghĩa với việc bạn đồng ý tuân theo điều khoản
             của shop
           </p>
         </Col>
-        <Col xs={24} md={12}>
+        <Col xs={24} sm={24} md={24} lg={7}>
           <ConfigProvider
             theme={{
               components: {
@@ -166,6 +200,18 @@ const Method = ({ address }) => {
           <p>Bạn có muốn thanh toán không?</p>
         </Modal>
       </Row>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      ></ToastContainer>
     </div>
   );
 };

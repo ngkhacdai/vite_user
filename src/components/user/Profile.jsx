@@ -5,7 +5,6 @@ import { API } from "../../service/customAxios";
 
 const Profile = () => {
   const profile = useSelector((state) => state.user.profile);
-  console.log(profile);
 
   function hideEmail(email) {
     const parts = email.split("@");

@@ -10,7 +10,7 @@ const ListCategory = ({ category }) => {
           {category.map((item, index) => {
             return (
               <Col
-                className="text-center justify-center flex-col flex cursor-pointer "
+                className="text-center justify-center flex-col flex cursor-pointer border hover:drop-shadow-lg border-transparent  hover:border-black"
                 xs={6}
                 sm={4}
                 md={4}

@@ -21,9 +21,12 @@ import Register from "./components/register/Register";
 import Logout from "./components/home/Logout";
 import Search from "./components/search/Search";
 import UpdateProfile from "./components/register/UpdateProfile";
+import socketService from "./service/socket/socketService";
 function App() {
   const [isLogin, setIsLogin] = useState(false);
-
+  useEffect(() => {
+    socketService;
+  }, []);
   useEffect(() => {
     if (!isLogin && localStorage.getItem("token")) {
       setIsLogin(true);
@@ -40,7 +43,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<CheckOut />} />
           <Route path="/shop/:id" element={<Shop />} />
-          <Route path="/search/:search" element={<Search />} />
+          <Route path="/:search" element={<Search />} />
           <Route path="/user" element={<Account />}>
             <Route path="/user" element={<Profile />} />
             <Route path="/user/address" element={<Address />} />

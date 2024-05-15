@@ -11,7 +11,6 @@ const ProductInfo = ({ ProductDetail }) => {
   const [attribute, setAttribute] = useState("");
   const [options, setOptions] = useState("");
   const [count, setCount] = useState(1);
-  console.log(ProductDetail);
   const onSelectAttributed = (e) => {
     setCount(1);
     setAttribute(e.target.value);
@@ -60,7 +59,6 @@ const ProductInfo = ({ ProductDetail }) => {
     });
   };
   const countIncrement = () => {
-    console.log();
     if (count < options.options_quantity) {
       setCount(count + 1);
     }

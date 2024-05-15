@@ -25,7 +25,6 @@ const UpdateProfile = () => {
           formData
         )
         .then((res) => {
-          console.log(res);
           navigate("/login");
         })
         .catch(() => {

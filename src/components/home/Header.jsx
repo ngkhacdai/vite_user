@@ -30,7 +30,7 @@ const Header = () => {
     if (value === "") {
       return navigate("/");
     }
-    window.location.href = `/search/search=${value}`;
+    window.location.href = `/search=${value}`;
   };
   return (
     <div className=" md:w-3/4 mx-auto">

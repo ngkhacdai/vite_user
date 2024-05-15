@@ -10,7 +10,6 @@ const Shop = () => {
   const [shopData, setShopData] = useState([]);
   const [shopDiscount, setShopDiscount] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  //   console.log(window.location.pathname.slice("/")[2]);
   const getData = async () => {
     setShopData(await getShop(window.location.pathname.split("/")[2]));
     setShopDiscount(
