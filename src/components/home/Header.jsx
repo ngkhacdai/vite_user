@@ -70,7 +70,7 @@ const Header = () => {
               ) : (
                 profile?.information?.fullName
               )}
-              <DownOutlined />
+              {/* <DownOutlined /> */}
             </Space>
           </Dropdown>
         </Col>

@@ -21,7 +21,8 @@ import Register from "./components/register/Register";
 import Logout from "./components/home/Logout";
 import Search from "./components/search/Search";
 import UpdateProfile from "./components/register/UpdateProfile";
-import Chat from "./components/chat/Chat";
+// import Chat from "./components/chat/Chat";
+import Category from "./components/category/Category";
 function App() {
   const [isLogin, setIsLogin] = useState(false);
 
@@ -42,6 +43,7 @@ function App() {
           <Route path="/checkout" element={<CheckOut />} />
           <Route path="/shop/:id" element={<Shop />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/category" element={<Category />} />
           {/* <Route path="/chat" element={<Chat />} /> */}
           <Route path="/user" element={<Account />}>
             <Route path="/user" element={<Profile />} />
@@ -60,7 +62,6 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/updateprofile" element={<UpdateProfile />} />
       </Routes>
-      <Chat />
     </BrowserRouter>
   );
 }
