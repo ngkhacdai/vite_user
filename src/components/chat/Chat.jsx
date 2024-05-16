@@ -2,8 +2,8 @@ import ChatForm from "./ChatForm";
 import { useEffect, useState } from "react";
 import io from "socket.io-client";
 import ChatBox from "./ChatBox";
-import { Button, Modal } from "antd";
-import { IoMdChatbubbles } from "react-icons/io";
+import { Button } from "antd";
+import { IoMdChatbubbles, IoMdClose } from "react-icons/io";
 
 const socket = io("http://localhost:3000/", {
   transports: ["websocket"],
@@ -12,6 +12,7 @@ const socket = io("http://localhost:3000/", {
 const Chat = () => {
   const [messageData, setMessageData] = useState([]);
   const [isShow, setIsShow] = useState(false);
+
   useEffect(() => {
     socket.connect();
 
@@ -43,34 +44,41 @@ const Chat = () => {
     };
     socket.emit("chat", form);
   };
-  const showModal = () => {
-    setIsShow(true);
+
+  const toggleChat = () => {
+    setIsShow((prevIsShow) => !prevIsShow);
   };
-  const cancelModal = () => {
-    setIsShow(false);
-  };
+
   return (
-    <div className="sticky bottom-0 right-1">
-      <Button onClick={showModal} className="flex items-center">
-        <IoMdChatbubbles />
-        <p>Chat</p>
-      </Button>
-      <Modal
-        title="Chat"
-        footer={false}
-        onCancel={cancelModal}
-        open={isShow}
-        width={650}
+    <div>
+      <div
+        className={`fixed bottom-0 right-0 w-full sm:w-96 bg-white border border-gray-300 shadow-lg transform transition-transform duration-300 ${
+          isShow ? "translate-y-0" : "translate-y-full"
+        }`}
       >
-        <div className="md:w-128 mx-auto border-1 border-solid border-gray-300">
-          <div className="border-1 border-solid border-gray-300">
-            <ChatBox messageData={messageData} />
-            <div className="sticky bottom-0 mt-2">
-              <ChatForm sendMessage={sendMessage} />
-            </div>
-          </div>
+        <div
+          className="bg-gray-200 p-2 flex justify-between items-center cursor-pointer"
+          onClick={toggleChat}
+        >
+          <span>Chat</span>
+          <IoMdClose />
         </div>
-      </Modal>
+        <div className="max-h-64 overflow-y-auto">
+          <ChatBox messageData={messageData} />
+        </div>
+        <div className="p-2 border-t border-gray-300">
+          <ChatForm sendMessage={sendMessage} />
+        </div>
+      </div>
+      {!isShow && (
+        <Button
+          onClick={toggleChat}
+          className="fixed bottom-4 right-4 flex items-center w-16 h-10 sm:w-24 sm:h-10"
+        >
+          <IoMdChatbubbles className="mr-1" />
+          <p className="text-lg sm:text-xl">Chat</p>
+        </Button>
+      )}
     </div>
   );
 };

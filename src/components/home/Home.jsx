@@ -1,7 +1,6 @@
 import { Affix } from "antd";
 import Header from "./Header";
 import { Outlet } from "react-router-dom";
-import Chat from "../chat/Chat";
 
 const Home = () => {
   return (
@@ -12,7 +11,6 @@ const Home = () => {
         </div>
       </Affix>
       <Outlet />
-      <Chat />
     </div>
   );
 };

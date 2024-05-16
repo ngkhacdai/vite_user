@@ -7,23 +7,23 @@ const ChatBox = ({ messageData }) => {
     ref.current?.lastElementChild?.scrollIntoView();
   }, [messageData]);
   return (
-    <div ref={ref} className="max-h-64 overflow-y-auto ">
+    <div ref={ref} className="max-h-64 overflow-y-auto">
       {messageData.length > 0 &&
         messageData.map((item, index) => {
           return (
-            <div key={`message-${index}`}>
+            <div key={`message-${index}`} className="p-2">
               {item.senderID === localStorage.getItem("userID") ? (
-                <Row justify="end">
-                  <Col className="m-1 min-w-16 break-words bg-blue-400 rounded-lg p-2 text-white">
+                <div className="flex justify-end">
+                  <div className="bg-blue-400 text-white rounded-lg p-2 max-w-xs break-words">
                     {item.message}
-                  </Col>
-                </Row>
+                  </div>
+                </div>
               ) : (
-                <Row>
-                  <Col className="m-1 min-w-16 break-words bg-white border border-solid border-black rounded-lg p-2">
+                <div className="flex justify-start">
+                  <div className="bg-gray-100 border border-gray-300 rounded-lg p-2 max-w-xs break-words">
                     {item.message}
-                  </Col>
-                </Row>
+                  </div>
+                </div>
               )}
             </div>
           );

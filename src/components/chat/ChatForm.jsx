@@ -6,28 +6,33 @@ const ChatForm = ({ sendMessage }) => {
   const [message, setMessage] = useState("");
 
   const onFinish = () => {
-    if (message) {
+    const mess = message.trim();
+    if (mess) {
       sendMessage(message);
       setMessage("");
     }
   };
-  const onFinishFailed = () => {};
-  return (
-    <div>
-      <Form
-        onFinishFailed={onFinishFailed}
-        onFinish={onFinish}
-        className="flex justify-center"
-      >
-        <Form.Item className="w-full mr-2">
-          <Input value={message} onChange={(e) => setMessage(e.target.value)} />
-        </Form.Item>
 
-        <Button htmlType="submit" type="primary">
-          <IoMdSend />
-        </Button>
-      </Form>
-    </div>
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
+
+  return (
+    <Form onFinish={onFinish} onFinishFailed={onFinishFailed} className="flex">
+      <Input
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+        className="flex-grow border border-gray-300 rounded-l-lg mr-1"
+        placeholder="Nhập tin nhắn"
+      />
+      <Button
+        type="primary"
+        htmlType="submit"
+        className="bg-blue-500 text-white rounded-r-lg p-2 flex items-center"
+      >
+        <IoMdSend className="mr-1" />
+      </Button>
+    </Form>
   );
 };
 
