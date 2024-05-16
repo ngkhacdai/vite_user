@@ -29,9 +29,9 @@ const ProductList = () => {
   }, []);
 
   const handleSearch = () => {
-    const pathParts = window.location.pathname.split("/")[1].split("search=");
-    const encodedSearch = pathParts[1];
-    const decodedSearch = decodeURIComponent(encodedSearch).toLowerCase();
+    const pathParts = window.location.search.split("?")[1];
+    // const encodedSearch = pathParts[1];
+    const decodedSearch = decodeURIComponent(pathParts).toLowerCase();
     return decodedSearch;
   };
 
@@ -52,9 +52,7 @@ const ProductList = () => {
       >
         <Col className="text-xl">
           Kết quả tìm kiếm:
-          {'"' +
-            window.location.pathname.split("/")[1].split("search=")[1] +
-            '"'}
+          {'"' + window.location.search.split("?")[1] + '"'}
         </Col>
         <Col>
           <Fillter productSearch={product} sortProduct={sortProduct} />

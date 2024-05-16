@@ -52,7 +52,7 @@ const Chat = () => {
   return (
     <div>
       <div
-        className={`fixed bottom-0 right-0 w-full sm:w-96 bg-white border border-gray-300 shadow-lg transform transition-transform duration-300 ${
+        className={`fixed bottom-0 right-0 w-full sm:w-128 min-h-120 z-1 bg-white border border-gray-300 shadow-lg transform transition-transform duration-300 ${
           isShow ? "translate-y-0" : "translate-y-full"
         }`}
       >
@@ -66,7 +66,7 @@ const Chat = () => {
         <div className="max-h-64 overflow-y-auto">
           <ChatBox messageData={messageData} />
         </div>
-        <div className="p-2 border-t border-gray-300">
+        <div className="p-2 border-t border-gray-300 absolute bottom-0 w-full">
           <ChatForm sendMessage={sendMessage} />
         </div>
       </div>
