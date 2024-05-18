@@ -108,7 +108,6 @@ const TableProduct = ({ cart, getData, setIsLoading }) => {
       userId,
       shop_order_ids,
     };
-    console.log(formData);
     await updateUserCartQuantity(formData);
     setIsLoading(true);
     await getData();
@@ -134,7 +133,6 @@ const TableProduct = ({ cart, getData, setIsLoading }) => {
       userId,
       shop_order_ids,
     };
-    console.log(formData);
     await updateUserCartQuantity(formData);
     setIsLoading(true);
     await getData();

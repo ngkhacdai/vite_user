@@ -17,7 +17,6 @@ const LoginForm = () => {
     await axios
       .post("https://dai.tongdaihoidap.com/v1/api/access/login", form)
       .then((res) => {
-        console.log(res);
         localStorage.setItem("userID", res.data.message.userId);
         localStorage.setItem("token", res.data.message.accessToken);
         window.location.href = "/";
@@ -26,9 +25,7 @@ const LoginForm = () => {
         openNotificationWithIcon("Sai tài khoản hoặc mật khẩu");
       });
   };
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
+  const onFinishFailed = (errorInfo) => {};
   return (
     <div>
       <p className="mb-5 text-2xl font-bold">Đăng nhập</p>

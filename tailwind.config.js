@@ -5,6 +5,7 @@ export default {
     extend: {
       spacing: {
         128: "38rem",
+        120: "34rem",
       },
       borderWidth: {
         1: "1px",

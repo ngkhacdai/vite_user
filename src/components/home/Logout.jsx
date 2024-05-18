@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-
 const Logout = () => {
   useEffect(() => {
     localStorage.clear();

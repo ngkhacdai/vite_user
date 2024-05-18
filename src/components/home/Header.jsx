@@ -29,8 +29,9 @@ const Header = () => {
   const onSearch = (value) => {
     if (value === "") {
       return navigate("/");
+    } else {
+      window.location.href = `/search?${value}`;
     }
-    window.location.href = `/search/search=${value}`;
   };
   return (
     <div className=" md:w-3/4 mx-auto">
@@ -69,7 +70,7 @@ const Header = () => {
               ) : (
                 profile?.information?.fullName
               )}
-              <DownOutlined />
+              {/* <DownOutlined /> */}
             </Space>
           </Dropdown>
         </Col>

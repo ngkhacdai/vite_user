@@ -1,7 +1,6 @@
 import { Button } from "antd";
 import { API } from "../../service/customAxios";
 import { NavLink } from "react-router-dom";
-
 const ShopInfor = ({ ProductDetail }) => {
   return (
     <div className="bg-white mt-3 pb-2 w-full flex flex-row items-center">
